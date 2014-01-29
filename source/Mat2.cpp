@@ -1,6 +1,6 @@
-#include "include/mator/2Dim/Mat2.h"
+#include "Mator/2Dim/Mat2.h"
 
-#include "include/mator/2Dim/Vec2.h"
+#include "Mator/2Dim/Vec2.h"
 #include <math.h>
 
 namespace mtr
