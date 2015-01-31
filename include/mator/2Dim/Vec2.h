@@ -10,13 +10,13 @@ namespace mtr
 		
 	public:
 		//components
-		float x;
-		float y;
+		double x;
+		double y;
 
 		//ctrs
 		Vec2();
-		Vec2(float nx, float ny);
-		Vec2(float mag, const Vec2 &dir);
+		Vec2(double nx, double ny);
+		Vec2(double mag, const Vec2 &dir);
 		Vec2(const Vec2 &vec);
 
 		//dtr
@@ -24,32 +24,32 @@ namespace mtr
 
 		//alter
 		void normalize();
-		void rotate(float radians);
+		void rotate(double radians);
 
 		//gets
-		float getMag() const;
-		float getMagSquared() const;
+		double getMag() const;
+		double getMagSquared() const;
 		Vec2 getUnit() const;
 		Vec2 getProjectionOn(const Vec2 &vec) const;
-		Vec2 getRotated(float radians) const;
+		Vec2 getRotated(double radians) const;
 
 		//statics
-		static float angleBetween(const Vec2 &v1, const Vec2 &v2);
+		static double angleBetween(const Vec2 &v1, const Vec2 &v2);
 
 		//selfOperators
 		const Vec2& operator=(const Vec2 &vec);
 		const Vec2& operator+=(const Vec2 &vec);
 		const Vec2& operator-=(const Vec2 &vec);
-		const Vec2& operator*=(float scalar);
-		const Vec2& operator/=(float scalar);
+		const Vec2& operator*=(double scalar);
+		const Vec2& operator/=(double scalar);
 		const Vec2 operator-() const;
 
 		friend const Vec2 operator+(const Vec2 &v1, const Vec2 &v2);
 		friend const Vec2 operator-(const Vec2 &v1, const Vec2 &v2);
-		friend const float operator*(const Vec2 &v1, const Vec2 &v2);
-		friend const Vec2 operator*(const Vec2 &vec, float scalar);
-		friend const Vec2 operator*(float scalar, const Vec2 &vec);
-		friend const Vec2 operator/(const Vec2 &vec, float scalar);
+		friend const double operator*(const Vec2 &v1, const Vec2 &v2);
+		friend const Vec2 operator*(const Vec2 &vec, double scalar);
+		friend const Vec2 operator*(double scalar, const Vec2 &vec);
+		friend const Vec2 operator/(const Vec2 &vec, double scalar);
 
 		//crossOperators
 		friend const Vec2 operator*(const Mat2 &mat, const Vec2 &vec);

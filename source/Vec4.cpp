@@ -17,7 +17,7 @@ namespace mtr
 
 	}
 
-	Vec4::Vec4(float nx, float ny, float nz, float nw):
+	Vec4::Vec4(double nx, double ny, double nz, double nw):
 		x(nx),
 		y(ny),
 		z(nz),
@@ -26,12 +26,12 @@ namespace mtr
 
 	}
 
-	Vec4::Vec4(float mag, const Vec4 &dir)
+	Vec4::Vec4(double mag, const Vec4 &dir)
 	{
 		*this=dir.getUnit()*mag;
 	}
 
-	Vec4::Vec4(const Vec3 &vec, float nw):
+	Vec4::Vec4(const Vec3 &vec, double nw):
 		x(vec.x),
 		y(vec.y),
 		z(vec.z),
@@ -58,7 +58,7 @@ namespace mtr
 	//alter
 	void Vec4::normalize()
 	{
-		float mag=getMag();
+		double mag=getMag();
 		if(mag!=0)
 		{
 			*this/=mag;
@@ -66,19 +66,19 @@ namespace mtr
 	}
 
 	//gets
-	float Vec4::getMag() const
+	double Vec4::getMag() const
 	{
 		return sqrtf(x*x+y*y+z*z+w*w);
 	}
 
-	float Vec4::getMagSquared() const
+	double Vec4::getMagSquared() const
 	{
 		return x*x+y*y+z*z+w*w;
 	}
 
 	Vec4 Vec4::getUnit() const
 	{
-		float mag=getMag();
+		double mag=getMag();
 		if(mag!=0)
 		{
 			return *this/mag;
@@ -96,7 +96,7 @@ namespace mtr
 
 	
 	//statics
-	float Vec4::angleBetween(const Vec4 &v1, const Vec4 &v2) 
+	double Vec4::angleBetween(const Vec4 &v1, const Vec4 &v2) 
 	{
 		return acos((v1*v2)/(v1.getMag()*v2.getMag()));
 	}
@@ -129,7 +129,7 @@ namespace mtr
 		return *this;
 	}
 
-	const Vec4& Vec4::operator*=(float scalar)
+	const Vec4& Vec4::operator*=(double scalar)
 	{
 		x*=scalar;
 		y*=scalar;
@@ -138,7 +138,7 @@ namespace mtr
 		return *this;
 	}
 
-	const Vec4& Vec4::operator/=(float scalar)
+	const Vec4& Vec4::operator/=(double scalar)
 	{
 		x/=scalar;
 		y/=scalar;
@@ -163,22 +163,22 @@ namespace mtr
 		return Vec4(v1.x-v2.x, v1.y-v2.y, v1.z-v2.z, v1.w-v2.w);
 	}
 
-	const float operator*(const Vec4 &v1, const Vec4 &v2)
+	const double operator*(const Vec4 &v1, const Vec4 &v2)
 	{
 		return v1.x*v2.x+v1.y*v2.y+v1.z*v2.z+v1.w*v2.w;
 	}
 
-	const Vec4 operator*(const Vec4 &vec, float scalar)
+	const Vec4 operator*(const Vec4 &vec, double scalar)
 	{
 		return Vec4(vec.x*scalar, vec.y*scalar, vec.z*scalar, vec.w*scalar);
 	}
 
-	const Vec4 operator*(float scalar, const Vec4 &vec)
+	const Vec4 operator*(double scalar, const Vec4 &vec)
 	{
 		return Vec4(vec.x*scalar, vec.y*scalar, vec.z*scalar, vec.w*scalar);
 	}
 
-	const Vec4 operator/(const Vec4 &vec, float scalar)
+	const Vec4 operator/(const Vec4 &vec, double scalar)
 	{
 		return Vec4(vec.x/scalar, vec.y/scalar, vec.z/scalar, vec.w/scalar);
 	}

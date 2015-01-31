@@ -10,7 +10,7 @@ namespace mtr
 		static const int Rows=2;
 		static const int Columns=2;
 		
-		float m_fArray[Rows*Columns];
+		double m_fArray[Rows*Columns];
 
 		//utility
 		void zeroArray();
@@ -27,12 +27,13 @@ namespace mtr
 		~Mat2();
 
 		//access
-		float& accessElement(int r, int c);
-		float accessElement(int r, int c) const;
+		double& accessElement(int r, int c);
+		double accessElement(int r, int c) const;
 
 		//gets
-		float* getArrayPointer();
-		const float* getArrayPointer() const;
+		double* getArrayPointer();
+		const double* getArrayPointer() const;
+		float* createFloatArray() const;
 		Vec2 getRow(int r) const;
 		Vec2 getColumn(int c) const;
 		Mat2 getTranspose() const;
@@ -43,7 +44,7 @@ namespace mtr
 
 		//statics
 		static Mat2 buildIdentity();
-		static Mat2 buildRotationMatrix2D(float radians);
+		static Mat2 buildRotationMatrix2D(double radians);
 		static Mat2 buildScaleMatrix2D(const Vec2 &vec);
 
 		//selfOperators
@@ -51,19 +52,19 @@ namespace mtr
 		const Mat2& operator+=(const Mat2 &mat);
 		const Mat2& operator-=(const Mat2 &mat);
 		const Mat2& operator*=(const Mat2 &mat);
-		const Mat2& operator*=(float scalar);
-		const Mat2& operator/=(float scalar);
+		const Mat2& operator*=(double scalar);
+		const Mat2& operator/=(double scalar);
 		const Mat2 operator-() const;
 
-		float& operator[](int i);
-		const float& operator[](int i) const;
+		double& operator[](int i);
+		const double& operator[](int i) const;
 
 		friend const Mat2 operator+(const Mat2 &m1, const Mat2 &m2);
 		friend const Mat2 operator-(const Mat2 &m1, const Mat2 &m2);
 		friend const Mat2 operator*(const Mat2 &m1, const Mat2 &m2);
-		friend const Mat2 operator*(const Mat2 &mat, float scalar);
-		friend const Mat2 operator*(float scalar, const Mat2 &mat);
-		friend const Mat2 operator/(const Mat2 &mat, float scalar);
+		friend const Mat2 operator*(const Mat2 &mat, double scalar);
+		friend const Mat2 operator*(double scalar, const Mat2 &mat);
+		friend const Mat2 operator/(const Mat2 &mat, double scalar);
 
 		//crossOperators
 		friend const Vec2 operator*(const Mat2 &mat, const Vec2 &vec);

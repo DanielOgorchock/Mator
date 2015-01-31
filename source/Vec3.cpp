@@ -17,7 +17,7 @@ namespace mtr
 
 	}
 
-	Vec3::Vec3(float nx, float ny, float nz):
+	Vec3::Vec3(double nx, double ny, double nz):
 		x(nx),
 		y(ny),
 		z(nz)
@@ -25,12 +25,12 @@ namespace mtr
 
 	}
 
-	Vec3::Vec3(float mag, const Vec3 &dir)
+	Vec3::Vec3(double mag, const Vec3 &dir)
 	{
 		*this=dir.getUnit()*mag;
 	}
 
-	Vec3::Vec3(const Vec2 &vec, float nz):
+	Vec3::Vec3(const Vec2 &vec, double nz):
 		x(vec.x),
 		y(vec.y),
 		z(nz)
@@ -55,14 +55,14 @@ namespace mtr
 	//alter
 	void Vec3::normalize()
 	{
-		float mag=getMag();
+		double mag=getMag();
 		if(mag!=0)
 		{
 			*this/=mag;
 		}
 	}
 
-	void Vec3::rotateAbout(float radians, const Vec3 &vec)
+	void Vec3::rotateAbout(double radians, const Vec3 &vec)
 	{
 		*this=Mat3::buildRotationMatrix3D(radians, vec)*(*this);
 	}
@@ -73,19 +73,19 @@ namespace mtr
 	}
 
 	//gets
-	float Vec3::getMag() const
+	double Vec3::getMag() const
 	{
 		return sqrtf(x*x+y*y+z*z);
 	}
 
-	float Vec3::getMagSquared() const
+	double Vec3::getMagSquared() const
 	{
 		return x*x+y*y+z*z;
 	}
 
 	Vec3 Vec3::getUnit() const
 	{
-		float mag=getMag();
+		double mag=getMag();
 		if(mag!=0)
 		{
 			return *this/mag;
@@ -101,7 +101,7 @@ namespace mtr
 		return Vec3((((*this)*vec)/(vec*vec))*vec);
 	}
 
-	Vec3 Vec3::getRotated(float radians, const Vec3 &vec) const
+	Vec3 Vec3::getRotated(double radians, const Vec3 &vec) const
 	{
 		return Mat3::buildRotationMatrix3D(radians, vec)*(*this);
 	}
@@ -112,7 +112,7 @@ namespace mtr
 	}
 
 	//statics
-	float Vec3::angleBetween(const Vec3 &v1, const Vec3 &v2) 
+	double Vec3::angleBetween(const Vec3 &v1, const Vec3 &v2) 
 	{
 		return acos((v1*v2)/(v1.getMag()*v2.getMag()));
 	}
@@ -149,7 +149,7 @@ namespace mtr
 		return *this;
 	}
 
-	const Vec3& Vec3::operator*=(float scalar)
+	const Vec3& Vec3::operator*=(double scalar)
 	{
 		x*=scalar;
 		y*=scalar;
@@ -157,7 +157,7 @@ namespace mtr
 		return *this;
 	}
 
-	const Vec3& Vec3::operator/=(float scalar)
+	const Vec3& Vec3::operator/=(double scalar)
 	{
 		x/=scalar;
 		y/=scalar;
@@ -181,22 +181,22 @@ namespace mtr
 		return Vec3(v1.x-v2.x, v1.y-v2.y, v1.z-v2.z);
 	}
 
-	const float operator*(const Vec3 &v1, const Vec3 &v2)
+	const double operator*(const Vec3 &v1, const Vec3 &v2)
 	{
 		return v1.x*v2.x+v1.y*v2.y+v1.z*v2.z;
 	}
 
-	const Vec3 operator*(const Vec3 &vec, float scalar)
+	const Vec3 operator*(const Vec3 &vec, double scalar)
 	{
 		return Vec3(vec.x*scalar, vec.y*scalar, vec.z*scalar);
 	}
 
-	const Vec3 operator*(float scalar, const Vec3 &vec)
+	const Vec3 operator*(double scalar, const Vec3 &vec)
 	{
 		return Vec3(vec.x*scalar, vec.y*scalar, vec.z*scalar);
 	}
 
-	const Vec3 operator/(const Vec3 &vec, float scalar)
+	const Vec3 operator/(const Vec3 &vec, double scalar)
 	{
 		return Vec3(vec.x/scalar, vec.y/scalar, vec.z/scalar);
 	}

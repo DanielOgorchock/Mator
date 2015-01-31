@@ -15,14 +15,14 @@ namespace mtr
 
 	}
 
-	Vec2::Vec2(float nx, float ny):
+	Vec2::Vec2(double nx, double ny):
 		x(nx),
 		y(ny)
 	{
 
 	}
 
-	Vec2::Vec2(float mag, const Vec2 &dir)
+	Vec2::Vec2(double mag, const Vec2 &dir)
 	{
 		*this=dir.getUnit()*mag;
 	}
@@ -43,32 +43,32 @@ namespace mtr
 	//alter
 	void Vec2::normalize()
 	{
-		float mag=getMag();
+		double mag=getMag();
 		if(mag!=0)
 		{
 			*this/=mag;
 		}
 	}
 
-	void Vec2::rotate(float radians)
+	void Vec2::rotate(double radians)
 	{
 		*this=Mat2::buildRotationMatrix2D(radians)*(*this);
 	}
 
 	//gets
-	float Vec2::getMag() const
+	double Vec2::getMag() const
 	{
 		return sqrtf(x*x+y*y); 
 	}
 
-	float Vec2::getMagSquared() const
+	double Vec2::getMagSquared() const
 	{
 		return x*x+y*y;
 	}
 
 	Vec2 Vec2::getUnit() const
 	{
-		float mag=getMag();
+		double mag=getMag();
 		if(mag!=0)
 		{
 			return *this/mag;
@@ -84,13 +84,13 @@ namespace mtr
 		return Vec2((((*this)*vec)/(vec*vec))*vec);
 	}
 
-	Vec2 Vec2::getRotated(float radians) const
+	Vec2 Vec2::getRotated(double radians) const
 	{
 		return Mat2::buildRotationMatrix2D(radians)*(*this);
 	}
 
 	//statics
-	float Vec2::angleBetween(const Vec2 &v1, const Vec2 &v2) 
+	double Vec2::angleBetween(const Vec2 &v1, const Vec2 &v2) 
 	{
 		return acos((v1*v2)/(v1.getMag()*v2.getMag()));
 	}
@@ -117,14 +117,14 @@ namespace mtr
 		return *this;
 	}
 
-	const Vec2& Vec2::operator*=(float scalar)
+	const Vec2& Vec2::operator*=(double scalar)
 	{
 		x*=scalar;
 		y*=scalar;
 		return *this;
 	}
 
-	const Vec2& Vec2::operator/=(float scalar)
+	const Vec2& Vec2::operator/=(double scalar)
 	{
 		x/=scalar;
 		y/=scalar;
@@ -147,22 +147,22 @@ namespace mtr
 		return Vec2(v1.x-v2.x, v1.y-v2.y);
 	}
 
-	const float operator*(const Vec2 &v1, const Vec2 &v2)
+	const double operator*(const Vec2 &v1, const Vec2 &v2)
 	{
 		return v1.x*v2.x+v1.y*v2.y;
 	}
 
-	const Vec2 operator*(const Vec2 &vec, float scalar)
+	const Vec2 operator*(const Vec2 &vec, double scalar)
 	{
 		return Vec2(vec.x*scalar, vec.y*scalar);
 	}
 
-	const Vec2 operator*(float scalar, const Vec2 &vec)
+	const Vec2 operator*(double scalar, const Vec2 &vec)
 	{
 		return Vec2(vec.x*scalar, vec.y*scalar);
 	}
 
-	const Vec2 operator/(const Vec2 &vec, float scalar)
+	const Vec2 operator/(const Vec2 &vec, double scalar)
 	{
 		return Vec2(vec.x/scalar, vec.y/scalar);
 	}

@@ -152,25 +152,35 @@ namespace mtr
 	}
 
 	//access
-	float& Mat4::accessElement(int r, int c)
+	double& Mat4::accessElement(int r, int c)
 	{
 		return m_fArray[(r-1)*Columns+c-1];
 	}
 
-	float Mat4::accessElement(int r, int c) const
+	double Mat4::accessElement(int r, int c) const
 	{
 		return m_fArray[(r-1)*Columns+c-1];
 	}
 
 	//gets
-	float* Mat4::getArrayPointer()
+	double* Mat4::getArrayPointer()
 	{
 		return &m_fArray[0];
 	}
 
-	const float* Mat4::getArrayPointer() const
+	const double* Mat4::getArrayPointer() const
 	{
 		return &m_fArray[0];
+	}
+
+	float* Mat4::createFloatArray() const
+	{
+		float *a=new float[Rows*Columns];
+		for(unsigned int i=0; i<Rows*Columns; ++i)
+		{
+			a[i]=m_fArray[i];
+		}
+		return a;
 	}
 
 	Vec4 Mat4::getRow(int r) const
@@ -250,12 +260,12 @@ namespace mtr
 		return mx*my*mz;
 	}
 
-	Mat4 Mat4::buildRotationMatrix3D(float radians, const Vec3 &vec)
+	Mat4 Mat4::buildRotationMatrix3D(double radians, const Vec3 &vec)
 	{
 		Vec3 a=vec.getUnit();
 		Mat4 m;
-		float c=cos(radians);
-		float s=sin(radians);
+		double c=cos(radians);
+		double s=sin(radians);
 		m.accessElement(1,1)=c+(a.x*a.x)*(1-c);
 		m.accessElement(1,2)=(a.x*a.y)*(1-c)-a.z*s;
 		m.accessElement(1,3)=(a.x*a.z)*(1-c)+a.y*s;
@@ -322,7 +332,7 @@ namespace mtr
 		 return *this;
 	}
 
-	const Mat4& Mat4::operator*=(float scalar)
+	const Mat4& Mat4::operator*=(double scalar)
 	{
 		for(int count=0; count<Rows*Columns; count++)
 		{
@@ -331,7 +341,7 @@ namespace mtr
 		return *this;
 	}
 
-	const Mat4& Mat4::operator/=(float scalar)
+	const Mat4& Mat4::operator/=(double scalar)
 	{
 		for(int count=0; count<Rows*Columns; count++)
 		{
@@ -346,12 +356,12 @@ namespace mtr
 	}
 
 
-	float& Mat4::operator[](int i)
+	double& Mat4::operator[](int i)
 	{
 		return m_fArray[i];
 	}
 
-	const float& Mat4::operator[](int i) const
+	const double& Mat4::operator[](int i) const
 	{
 		return m_fArray[i];
 	}
@@ -383,7 +393,7 @@ namespace mtr
 		{
 			for(int counter2=m.Columns; counter2>0; counter2--)
 			{
-				float &element=m.accessElement(counter1, counter2);
+				double &element=m.accessElement(counter1, counter2);
 				for(int counter3=m.Columns; counter3>0; counter3--)
 				{
 					element+=m1.accessElement(counter1, counter3)*m2.accessElement(counter3, counter2); 
@@ -393,7 +403,7 @@ namespace mtr
 		return m;
 	}
 
-	const Mat4 operator*(const Mat4 &mat, float scalar)
+	const Mat4 operator*(const Mat4 &mat, double scalar)
 	{
 		Mat4 m(mat);
 		for(int count=0; count<m.Rows*m.Columns; count++)
@@ -403,7 +413,7 @@ namespace mtr
 		return m;
 	}
 
-	const Mat4 operator*(float scalar, const Mat4 &mat)
+	const Mat4 operator*(double scalar, const Mat4 &mat)
 	{
 		Mat4 m(mat);
 		for(int count=0; count<m.Rows*m.Columns; count++)
@@ -413,7 +423,7 @@ namespace mtr
 		return m;
 	}
 
-	const Mat4 operator/(const Mat4 &mat, float scalar)
+	const Mat4 operator/(const Mat4 &mat, double scalar)
 	{
 		Mat4 m(mat);
 		for(int count=0; count<m.Rows*m.Columns; count++)

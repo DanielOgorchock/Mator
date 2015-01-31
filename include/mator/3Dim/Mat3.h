@@ -12,7 +12,7 @@ namespace mtr
 		static const int Rows=3;
 		static const int Columns=3;
 		
-		float m_fArray[Rows*Columns];
+		double m_fArray[Rows*Columns];
 
 		//utility
 		void zeroArray();
@@ -30,12 +30,13 @@ namespace mtr
 		~Mat3();
 
 		//access
-		float& accessElement(int r, int c);
-		float accessElement(int r, int c) const;
+		double& accessElement(int r, int c);
+		double accessElement(int r, int c) const;
 
 		//gets
-		float* getArrayPointer();
-		const float* getArrayPointer() const;
+		double* getArrayPointer();
+		const double* getArrayPointer() const;
+		float* createFloatArray() const;
 		Vec3 getRow(int r) const;
 		Vec3 getColumn(int c) const;
 		Mat3 getTranspose() const;
@@ -47,9 +48,9 @@ namespace mtr
 		//statics
 		static Mat3 buildIdentity();
 		static Mat3 buildRotationMatrix3D(const Vec3 &vec);
-		static Mat3 buildRotationMatrix3D(float radians, const Vec3 &vec);
+		static Mat3 buildRotationMatrix3D(double radians, const Vec3 &vec);
 		static Mat3 buildScaleMatrix3D(const Vec3 &vec);
-		static Mat3 buildRotationMatrix2D(float radians);
+		static Mat3 buildRotationMatrix2D(double radians);
 		static Mat3 buildScaleMatrix2D(const Vec2 &vec);
 		static Mat3 buildTranslationMatrix2D(const Vec2 &vec);
 
@@ -58,19 +59,19 @@ namespace mtr
 		const Mat3& operator+=(const Mat3 &mat);
 		const Mat3& operator-=(const Mat3 &mat);
 		const Mat3& operator*=(const Mat3 &mat);
-		const Mat3& operator*=(float scalar);
-		const Mat3& operator/=(float scalar);
+		const Mat3& operator*=(double scalar);
+		const Mat3& operator/=(double scalar);
 		const Mat3 operator-() const;
 
-		float& operator[](int i);
-		const float& operator[](int i) const;
+		double& operator[](int i);
+		const double& operator[](int i) const;
 
 		friend const Mat3 operator+(const Mat3 &m1, const Mat3 &m2);
 		friend const Mat3 operator-(const Mat3 &m1, const Mat3 &m2);
 		friend const Mat3 operator*(const Mat3 &m1, const Mat3 &m2);
-		friend const Mat3 operator*(const Mat3 &mat, float scalar);
-		friend const Mat3 operator*(float scalar, const Mat3 &mat);
-		friend const Mat3 operator/(const Mat3 &mat, float scalar);
+		friend const Mat3 operator*(const Mat3 &mat, double scalar);
+		friend const Mat3 operator*(double scalar, const Mat3 &mat);
+		friend const Mat3 operator/(const Mat3 &mat, double scalar);
 
 		//crossOperators
 		friend const Vec3 operator*(const Mat3 &mat, const Vec3 &vec);

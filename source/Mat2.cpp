@@ -79,25 +79,35 @@ namespace mtr
 	}
 
 	//access
-	float& Mat2::accessElement(int r, int c)
+	double& Mat2::accessElement(int r, int c)
 	{
 		return m_fArray[(r-1)*Columns+c-1];
 	}
 
-	float Mat2::accessElement(int r, int c) const
+	double Mat2::accessElement(int r, int c) const
 	{
 		return m_fArray[(r-1)*Columns+c-1];
 	}
 
 	//gets
-	float* Mat2::getArrayPointer()
+	double* Mat2::getArrayPointer()
 	{
 		return &m_fArray[0];
 	}
 
-	const float* Mat2::getArrayPointer() const
+	const double* Mat2::getArrayPointer() const
 	{
 		return &m_fArray[0];
+	}
+
+	float* Mat2::createFloatArray() const
+	{
+		float *a=new float[Rows*Columns];
+		for(unsigned int i=0; i<Rows*Columns; ++i)
+		{
+			a[i]=m_fArray[i];
+		}
+		return a;
 	}
 
 	Vec2 Mat2::getRow(int r) const
@@ -140,7 +150,7 @@ namespace mtr
 		return m;
 	}
 
-	Mat2 Mat2::buildRotationMatrix2D(float radians)
+	Mat2 Mat2::buildRotationMatrix2D(double radians)
 	{
 		Mat2 m;
 		m.accessElement(1,1)=cos(radians);
@@ -192,7 +202,7 @@ namespace mtr
 		 return *this;
 	}
 
-	const Mat2& Mat2::operator*=(float scalar)
+	const Mat2& Mat2::operator*=(double scalar)
 	{
 		for(int count=0; count<Rows*Columns; count++)
 		{
@@ -201,7 +211,7 @@ namespace mtr
 		return *this;
 	}
 
-	const Mat2& Mat2::operator/=(float scalar)
+	const Mat2& Mat2::operator/=(double scalar)
 	{
 		for(int count=0; count<Rows*Columns; count++)
 		{
@@ -216,12 +226,12 @@ namespace mtr
 	}
 
 
-	float& Mat2::operator[](int i)
+	double& Mat2::operator[](int i)
 	{
 		return m_fArray[i];
 	}
 
-	const float& Mat2::operator[](int i) const
+	const double& Mat2::operator[](int i) const
 	{
 		return m_fArray[i];
 	}
@@ -253,7 +263,7 @@ namespace mtr
 		{
 			for(int counter2=m.Columns; counter2>0; counter2--)
 			{
-				float &element=m.accessElement(counter1, counter2);
+				double &element=m.accessElement(counter1, counter2);
 				for(int counter3=m.Columns; counter3>0; counter3--)
 				{
 					element+=m1.accessElement(counter1, counter3)*m2.accessElement(counter3, counter2); 
@@ -263,7 +273,7 @@ namespace mtr
 		return m;
 	}
 
-	const Mat2 operator*(const Mat2 &mat, float scalar)
+	const Mat2 operator*(const Mat2 &mat, double scalar)
 	{
 		Mat2 m(mat);
 		for(int count=0; count<m.Rows*m.Columns; count++)
@@ -273,7 +283,7 @@ namespace mtr
 		return m;
 	}
 
-	const Mat2 operator*(float scalar, const Mat2 &mat)
+	const Mat2 operator*(double scalar, const Mat2 &mat)
 	{
 		Mat2 m(mat);
 		for(int count=0; count<m.Rows*m.Columns; count++)
@@ -283,7 +293,7 @@ namespace mtr
 		return m;
 	}
 
-	const Mat2 operator/(const Mat2 &mat, float scalar)
+	const Mat2 operator/(const Mat2 &mat, double scalar)
 	{
 		Mat2 m(mat);
 		for(int count=0; count<m.Rows*m.Columns; count++)
