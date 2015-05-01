@@ -1,7 +1,7 @@
-#include "Mator/4Dim/Vec4.h"
+#include "mator/4Dim/Vec4.h"
 
 #include <math.h>
-#include "Mator/3Dim/Vec3.h"
+#include "mator/3Dim/Vec3.h"
 
 namespace mtr
 {

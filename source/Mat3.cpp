@@ -1,9 +1,9 @@
-#include "Mator/3Dim/Mat3.h"
+#include "mator/3Dim/Mat3.h"
 
-#include "Mator/3Dim/Vec3.h"
+#include "mator/3Dim/Vec3.h"
 #include <math.h>
-#include "Mator/2Dim/Mat2.h"
-#include "Mator/2Dim/Vec2.h"
+#include "mator/2Dim/Mat2.h"
+#include "mator/2Dim/Vec2.h"
 
 namespace mtr
 {
